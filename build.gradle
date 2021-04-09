@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'com.palantir.docker' version '0.26.0'
 }
 // 指定了生生成的编译文件的版本，默认为jar包
 group = 'com.stackstone.demo'
@@ -23,6 +24,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+docker {
+    name "${project.group}/${bootJar.archiveBaseName.get()}"
+    files bootJar.archiveFile.get().asFile
+    buildArgs(['JAR_FILE': "${bootJar.archiveFileName.get()}"])
 }
 
 // 测试
