@@ -1,23 +1,31 @@
+// 使用插件
 plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
-
+// 指定了生生成的编译文件的版本，默认为jar包
 group = 'com.stackstone.demo'
 version = '1.0.0'
+
+// 指定编译.java文件的JDK版本
 sourceCompatibility = '11'
 
+// 使用了Maven的中央仓库（可以指定其他仓库）
 repositories {
-    mavenCentral()
+//    mavenCentral()
+    // 阿里云镜像仓库
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 }
 
+// 依赖关系
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+// 测试
 test {
     useJUnitPlatform()
 }
